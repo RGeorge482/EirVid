@@ -21,4 +21,23 @@ public class RentalTableCreator {
         this.databaseName = databaseName;
     }
     
+    public void createRentalTable(){
+        String sql = "CREATE TABLE IF NOT EXISTS " + databaseName + ".Rental (" +
+                "RentalID INT AUTO_INCREMENT PRIMARY KEY, " +
+                "MovieID INT, " +
+                "UserID INT, " +
+                "Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                "FOREIGN KEY (MovieID) REFERENCES Movies(MovieID), " +
+                "FOREIGN KEY (UserID) REFERENCES User(UserID)" +
+                ")";
+        
+        try(Connection conn = connector.getConnection(); Statement stmt = conn.createStatement()){
+            stmt.executeUpdate(sql);
+            System.out.println("Rental table created successfully.");
+        }catch(SQLException e){
+            System.out.println("An error occured while creating the Rental table: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
 }

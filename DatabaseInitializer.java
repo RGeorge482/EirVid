@@ -19,6 +19,7 @@ public class DatabaseInitializer {
     private SchemaCreator schemaCreator;
     private UserTableCreator userTableCreator;
     private MovieTableCreator movieTableCreator;
+    private RentalTableCreator rentalTableCreator;
     
     //CONSTRUCTOR
     public DatabaseInitializer(){
@@ -33,6 +34,9 @@ public class DatabaseInitializer {
         
         //Initialize the movieTableCreator with the database name and databaseConnector
         this.movieTableCreator = new MovieTableCreator("VisionVibe", connector);
+        
+        //Initialize the RentalTableCreator with the databse name and DataBaseConnector
+        this.rentalTableCreator = new RentalTableCreator("VisionVibe", connector);
     }
     
     public void setupDatabase(){
@@ -45,6 +49,7 @@ public class DatabaseInitializer {
         //Craete the movie table
         movieTableCreator.createMoviesTable();
         
-        
+        //Create the Rental Table
+        rentalTableCreator.createRentalTable();
     }
 }

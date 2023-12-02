@@ -22,6 +22,13 @@ public class SchemaCreator {
     
     public void createDatabase(){
         String sql = "CREATE DATABASE IF NOT EXISTS " + databaseName;
+        try(Connection connect = connector.getConnection(); Statement stmt = connect.createStatement()){
+            stmt.executeUpdate(sql);
+            System.out.println("Database " + databaseName + " created successfully.");
+        }catch(SQLException e){
+            System.out.println("An error occured while creating the database: " + e.getMessage());
+            e.printStackTrace();
+        }
         
     }
     

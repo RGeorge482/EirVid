@@ -18,6 +18,7 @@ public class DatabaseInitializer {
     private DatabaseConnector connector;
     private SchemaCreator schemaCreator;
     private UserTableCreator userTableCreator;
+    private MovieTableCreator movieTableCreator;
     
     //CONSTRUCTOR
     public DatabaseInitializer(){
@@ -29,6 +30,9 @@ public class DatabaseInitializer {
         
         //Initialize the userTableCreator with the database name and databaseConnector
         this.userTableCreator = new UserTableCreator("VisionVibe", connector);
+        
+        //Initialize the movieTableCreator with the database name and databaseConnector
+        this.movieTableCreator = new MovieTableCreator("VisionVibe", connector);
     }
     
     public void setupDatabase(){
@@ -37,6 +41,9 @@ public class DatabaseInitializer {
         
         //Create the user table
         userTableCreator.createUserTable();
+        
+        //Craete the movie table
+        movieTableCreator.createMoviesTable();
         
         
     }

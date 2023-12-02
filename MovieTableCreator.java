@@ -16,7 +16,7 @@ public class MovieTableCreator {
     private String databaseName;
     
     //CONSTRUCTOR
-    public void MovieTableCreator(String databaseName, DatabaseConnector connector){
+    public MovieTableCreator(String databaseName, DatabaseConnector connector){
         this.connector = connector;
         this.databaseName = databaseName;
     }

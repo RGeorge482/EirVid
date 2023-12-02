@@ -15,5 +15,19 @@ import java.sql.Statement;
  * @author bernardogandara
  */
 public class DatabaseInitializer {
+    private DatabaseConnector connector;
+    private SchemaCreator schemaCreator;
     
+    //CONSTRUCTOR
+    public DatabaseInitializer(){
+        //Initialize the DatabaseConnector
+        this.connector = new DatabaseConnector();
+        
+        //Initialize the SchemaCreator with the database name and DatabaseConnector
+        this.schemaCreator = new SchemaCreator("VisionVibe", connector);
+    }
+    
+    public void setupDatabase(){
+        schemaCreator.createDatabase();
+    }
 }

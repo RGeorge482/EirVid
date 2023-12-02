@@ -16,8 +16,25 @@ public class UserTableCreator {
     private DatabaseConnector connector;
     private String databaseName;
     
+    
+    //CONSTRUCTOR
     public UserTableCreator(String databaseName, DatabaseConnector connector){
         this.connector = connector;
         this.databaseName = databaseName;
     }
+    
+    public void createUserTable(){
+        String sql = "CREATE TABLE IF NOT EXISTS " + databaseName + ".User (" +
+                "UserID INT AUTO_INCREMENT PRIMARY KEY, " +
+                "Username VARCHAR(255) NOT NULL, " + 
+                "Email VARCHAR(255) NOT NULL, " + 
+                ")";
+        try(Connection conn = connector.getConnection(); Statement stmt = conn.createStatement()){
+            stmt.execute(sql);
+            System.out.println("User table created successfully.");
+        }catch(SQLException e){
+            System.out.println("An error occured while creating the User table: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }   
 }

@@ -17,6 +17,7 @@ import java.sql.Statement;
 public class DatabaseInitializer {
     private DatabaseConnector connector;
     private SchemaCreator schemaCreator;
+    private UserTableCreator userTableCreator;
     
     //CONSTRUCTOR
     public DatabaseInitializer(){
@@ -25,9 +26,18 @@ public class DatabaseInitializer {
         
         //Initialize the SchemaCreator with the database name and DatabaseConnector
         this.schemaCreator = new SchemaCreator("VisionVibe", connector);
+        
+        //Initialize the userTableCreator with the database name and databaseConnector
+        this.userTableCreator = new UserTableCreator("VisionVibe", connector);
     }
     
     public void setupDatabase(){
+        //Create the schema
         schemaCreator.createDatabase();
+        
+        //Create the user table
+        userTableCreator.createUserTable();
+        
+        
     }
 }

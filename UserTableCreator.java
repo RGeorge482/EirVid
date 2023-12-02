@@ -13,5 +13,11 @@ import java.sql.Statement;
  * @author bernardogandara
  */
 public class UserTableCreator {
+    private DatabaseConnector connector;
+    private String databaseName;
     
+    public UserTableCreator(String databaseName, DatabaseConnector connector){
+        this.connector = connector;
+        this.databaseName = databaseName;
+    }
 }

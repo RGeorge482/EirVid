@@ -23,10 +23,18 @@ public class MovieTableCreator {
     
     public void createMoviesTable(){
         String sql = "CREATE TABLE IF NOT EXISTS " + databaseName + ".Movies (" +
-                "MovieID INT AUTO_INCREMENT PRIMARY KEY, " +
-                "Title VARCHAR(255) NOT NULL, " +
-                "Category VARCHAR(255) NOT NULL, " + 
-                "Price DECIMAL(10, 2) NOT NULL" +
+                    "MovieID INT AUTO_INCREMENT PRIMARY KEY, " +
+                     "OriginalLanguage VARCHAR(10), " +
+                     "OriginalTitle VARCHAR(255) NOT NULL, " +
+                     "Overview TEXT, " +
+                     "Popularity DECIMAL(10, 2), " +
+                     "ReleaseDate DATE, " +
+                     "Runtime INT, " +
+                     "Tagline VARCHAR(255), " +
+                     "Title VARCHAR(255) NOT NULL, " +
+                     "VoteAverage DECIMAL(3, 1), " +
+                     "VoteCount INT, " +
+                     "Price DECIMAL(10, 2) " +
                 ")";
         
         try(Connection conn = connector.getConnection(); Statement stmt = conn.createStatement()){

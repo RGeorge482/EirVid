@@ -1,4 +1,4 @@
-# VisionVibe - Object-Oriented Analysis & Design (OOAD) Project
+# EirVid - Object-Oriented Analysis & Design (OOAD) Project
 
 ## Project Overview
 This repository contains the collaborative work for our Object-Oriented Analysis & Design (OOAD) course project. 

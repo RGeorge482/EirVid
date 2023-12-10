@@ -5,13 +5,13 @@
 package EirVid;
 
 import java.util.Scanner;
-import static EirVid.rentaMovie.rentAMovie;
+import static EirVid.RentaMovie.rentAMovie;
 
 /**
  *
  * @author ignacioalarconvarela
  */
-public class menuClass {
+public class MenuClass {
     public static Scanner scanner = new Scanner(System.in);
     public static boolean isLoggedIn = false;
     

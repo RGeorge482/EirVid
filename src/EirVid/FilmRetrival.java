@@ -51,6 +51,4 @@ public class FilmRetrival {
         }
         return list_films; //return it
     }
-    
-    
 }

@@ -30,7 +30,7 @@ public class RentalManager {
     public RentalManager() {
     }
        
-     
+     //Sending data to DB rental
     public boolean save_rental_info(int rental_ID, int movie_ID, int user_ID) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         try {

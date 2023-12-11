@@ -47,16 +47,24 @@ public class EirVid {
         UserDisplay user_display = new UserDisplay();
         user_display.display_list_users();
         
+        //Adding info to databases
         RentalManager rental_display = new RentalManager();
         rental_display.save_rental_info(1, 1, 5);
         rental_display.save_rental_info(2, 3, 5);
-        rental_display.save_rental_info(3, 4, 5);
-        rental_display.save_rental_info(4, 7, 5);
+        rental_display.save_rental_info(3, 3, 5);
+        rental_display.save_rental_info(4, 3, 5);
+        rental_display.save_rental_info(5, 3, 2);
+        rental_display.save_rental_info(6, 1, 2);
+        rental_display.save_rental_info(7, 1, 2);
+        
+        //Displaying info from rental db
+        RentalDisplay rental_info = new RentalDisplay();
+        rental_info.display_list_rental();
         
         DatabaseInitializer initialize = new DatabaseInitializer();
         initialize.setupDatabase();
 
-           // Switch Menu for terminal
+        //Switch Menu for terminal
         Scanner scanner = new Scanner(System.in);
     
         boolean isLoggedIn = false;

@@ -16,16 +16,16 @@ import java.sql.SQLException;
 public class EirVid {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        
-        
+       
+        // George 
         MenuOptions myOptions = new MenuOptions();   
         User myUser = new User(null, null, null);
         Controller myController = new Controller( myUser, myOptions);
         
-//        THIS CAN BE LATER EXCLUDED, JUST ADDED THIS TO THE PROJECT AS I NEED FILM INFO 
-//        IN ORDER TO CREATE A FOREIGNER KEY AND KEEP TRACK OF FILMS WATCHED BY USERS
-//         YOU RAN FIRST TIME ERROR IS CAUSED AS IT IS SEARCHING FOR NON EXISITING DB
-//        AFTER THAT THE SCHEMAS ARE CREATED BUT AS PK IS HARDCODED ERRROR OCCURS
+////        THIS CAN BE LATER EXCLUDED, JUST ADDED THIS TO THE PROJECT AS I NEED FILM INFO 
+////        IN ORDER TO CREATE A FOREIGNER KEY AND KEEP TRACK OF FILMS WATCHED BY USERS
+////         YOU RAN FIRST TIME ERROR IS CAUSED AS IT IS SEARCHING FOR NON EXISITING DB
+////        AFTER THAT THE SCHEMAS ARE CREATED BUT AS PK IS HARDCODED ERRROR OCCURS
         FilmsInsertion initializeFilm = new FilmsInsertion();
         initializeFilm.save_film_info(1, "Eng", "Test", 9, 5.0, 1, 2.50);
         initializeFilm.save_film_info(8, "Eng", "Test", 10,5.0, 2, 3.50);

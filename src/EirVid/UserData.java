@@ -8,6 +8,7 @@ package EirVid;
 /**
  *
  * @author George
+ * mda21563
  */
 public enum UserData {
     USERNAME, EMAIL,PASSWORD;

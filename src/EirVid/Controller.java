@@ -11,6 +11,7 @@ import java.util.Scanner;
 /**
  *
  * @author George
+ * mda21563
  */
 public class Controller {
     private User user;

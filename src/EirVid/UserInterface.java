@@ -9,6 +9,7 @@ import java.sql.SQLException;
 /**
  *
  * @author George
+ * mda21563
  */
 public interface UserInterface {
     public boolean user_login(String name, String user_password) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException;

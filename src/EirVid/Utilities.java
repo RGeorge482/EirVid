@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author George
+ * mda21563
  */
 public class Utilities {
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";

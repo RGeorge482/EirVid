@@ -57,9 +57,9 @@ public class Controller {
                             
                             // Check User class constructor
 
-                            // user = new User(username, emailAddress, userPassword);
+                             user = new User(username, emailAddress, userPassword);
 
-                            // users.add(user); // Check here UserRetrival class  User user = new User();
+                            //users.add(user); // Check here UserRetrival class  User user = new User();
 
                             user.register(user);//user registered
 

@@ -21,6 +21,5 @@ public class DatabaseConnector {
     //CONNECT TO THE DATABASE method()
     public Connection getConnection() throws SQLException{
         return DriverManager.getConnection(URL, USER, PASSWORD);
-    }
-    
+    } 
 }

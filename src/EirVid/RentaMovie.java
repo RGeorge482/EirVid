@@ -4,13 +4,13 @@
  */
 package EirVid;
 
-import static EirVid.menuClass.scanner;
+import static EirVid.MenuClass.scanner;
 
 /**
  *
  * @author ignacioalarconvarela
  */
-public class rentaMovie {
+public class RentaMovie {
      public static void rentAMovie(){
          // Show list of movies
     // Example: System.out.println("1. Movie A\n2. Movie B\n...");

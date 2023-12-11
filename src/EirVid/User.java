@@ -14,6 +14,19 @@ public class User {
     private String email;
     private String password; 
     private int user_ID;
+    
+    public User(){
+        this.user_ID = user_ID;
+        this.user_name = user_name;
+        this.password = password;
+        this.email = email;
+    }
+    
+     public User(String username, String email_address,String user_password) {
+        this.user_name = username;
+        this.password = user_password;
+        this.email = email_address;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -50,5 +63,18 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "user_name=" + user_name + ", email=" + email + ", password=" + password + ", user_ID=" + user_ID + '}';
+    }
+    
+    
+    //  Register 
+    public boolean register(User user) {
+        // connect to the database to register
+        return true;
+    }
+    
+    // Login
+     public boolean user_login(String name, String user_password) {
+        // connect to database to login
+        return true;
     }
 }

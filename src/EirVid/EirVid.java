@@ -17,11 +17,6 @@ import java.util.List;
  */
 public class EirVid {
 
-<<<<<<< HEAD
-    public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-       
-        // George 
-=======
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException {
         
         DatabaseInitializer initialize = new DatabaseInitializer();
@@ -57,29 +52,12 @@ public class EirVid {
     output.saveData(movies);
 
         
-        
-        
->>>>>>> da09d9f14a255e7f595acb12514ec482666883b5
+  
         MenuOptions myOptions = new MenuOptions();   
         User myUser = new User(null, null, null);
         Controller myController = new Controller( myUser, myOptions);
         
-<<<<<<< HEAD
-////        THIS CAN BE LATER EXCLUDED, JUST ADDED THIS TO THE PROJECT AS I NEED FILM INFO 
-////        IN ORDER TO CREATE A FOREIGNER KEY AND KEEP TRACK OF FILMS WATCHED BY USERS
-////         YOU RAN FIRST TIME ERROR IS CAUSED AS IT IS SEARCHING FOR NON EXISITING DB
-////        AFTER THAT THE SCHEMAS ARE CREATED BUT AS PK IS HARDCODED ERRROR OCCURS
-        FilmsInsertion initializeFilm = new FilmsInsertion();
-        initializeFilm.save_film_info(1, "Eng", "Test", 9, 5.0, 1, 2.50);
-        initializeFilm.save_film_info(8, "Eng", "Test", 10,5.0, 2, 3.50);
-        initializeFilm.save_film_info(3, "Eng", "Test", 8, 5.0, 3, 4.50);
-        initializeFilm.save_film_info(4, "Eng", "Test", 7, 5.0, 4, 5.50);
-        initializeFilm.save_film_info(5, "Eng", "Test", 6, 5.0, 5, 6.50);
-        initializeFilm.save_film_info(6, "Eng", "Test", 5, 5.0, 6, 7.50);
-        initializeFilm.save_film_info(7, "Eng", "Test", 7, 5.0, 7, 8.50);
-=======
->>>>>>> da09d9f14a255e7f595acb12514ec482666883b5
-        
+
         UsersManager insertUser = new UsersManager();
         insertUser.save_user_info(2, "Bernardo", "rol", "no matter it is all the same");
         insertUser.save_user_info(3, "Ignacio", "dan", "no matter it is all the same");

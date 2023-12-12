@@ -9,6 +9,7 @@ package EirVid;
  * @author ignacioalarconvarela
  * 2021357
  */
+
 public class DataInputFactory {
     public DataInput makeDataInput(DataIOTypes inputType) {
         switch (inputType) {

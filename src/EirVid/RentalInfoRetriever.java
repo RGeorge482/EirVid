@@ -10,14 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author Wellington 2021330
  */
+
 public class RentalInfoRetriever {
     private DatabaseConnector connector;
     private String databaseName;
@@ -30,43 +28,27 @@ public class RentalInfoRetriever {
     public RentalInfoRetriever() {
     }
     
-    // Method to import to a list every film
-    public Map<Integer, ArrayList<Film>> import_rental(){
-        //list to receive films rented by all users
-        FilmRetrival film_retrival = new FilmRetrival(connector, databaseName);
-        //Filling list with films coming from db
-        ArrayList<Film> film_list = film_retrival.import_films();
-        
-        Map<Integer, ArrayList<Film>> user_film_map = new HashMap<>();
-        
+    public ArrayList<Integer> import_rental(int userID){//takes user id as par 
+        //Will hold the films from the specified ID
+        ArrayList<Integer> film_list_by_ID = new ArrayList<>();
+ 
         try (Connection conn = connector.getConnection();
                 Statement stmt = conn.createStatement();
                 ) {
             
             stmt.execute("USE " + databaseName);
-
-            ResultSet rs = stmt.executeQuery("SELECT UserID, MovieID from rental");
+            ResultSet rs = stmt.executeQuery("SELECT MovieID FROM rental WHERE UserID = " + userID);//Returns only those which matches ID in parameter
             
-            //setting all properties and adding it to the film list at the end
+            //Adding film if exists to array list
             while (rs.next()) {
-                int userID = rs.getInt("UserID");
-                int movieID = rs.getInt("MovieID");
-                
-                Film film = find_film_by_ID(film_list, movieID);
-                
-                user_film_map.computeIfAbsent(userID, k -> new ArrayList<>()).add(film);
+                int movieID = rs.getInt("MovieID"); //receiving movie id from db according to userID
+                film_list_by_ID.add(movieID);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return user_film_map; //return it
-    }
-    
-    //THIS FUNCTION WILL LATER BE MOVED
-    public static Film find_film_by_ID(List<Film> films, int movie_ID){
-        for(Film film : films){
-            if(film.getMovie_id() == movie_ID) return film;
-        }
-        return null;
+    return film_list_by_ID;//returs list of integers that represents movies id
     }
 }
+
+//LATER IF WE WANT TO EXTRACT ALL FILMS FROM DB IN ORDER TO RECOMMEND SOME, I CAN JUST CREATE A LIST FOR ALL FILMS FROM DB

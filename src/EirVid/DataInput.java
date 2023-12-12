@@ -13,7 +13,6 @@ import java.util.List;
  * 2021357
  */
 public interface DataInput {
-    
     public List<String> getData() throws IOException;
     
 }

@@ -5,10 +5,9 @@
 package EirVid;
 import java.sql.Connection;
 import java.util.Scanner;
-import static EirVid.MenuClass.showMainMenu;
-import static EirVid.MenuClass.showUserMenu;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,85 +17,67 @@ import java.util.List;
 public class EirVid {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException {
-        
         DatabaseInitializer initialize = new DatabaseInitializer();
         initialize.setupDatabase();
         
-                   // Initialize the DatabaseConnector
-    DatabaseConnector connector = new DatabaseConnector();
+        // Initialize the DatabaseConnector
+        DatabaseConnector connector = new DatabaseConnector();    
+//       
+        RentalInfoRetriever rental_retriever = new RentalInfoRetriever(connector, "visionvibe");
+//    
+//        ArrayList<Integer> films_ID = rental_retriever.import_rental(5);
+//        
+//        //Displaying info from rental db
+//        RentalDisplay rental_info = new RentalDisplay();
+//        ArrayList<Film> films = rental_info.import_films_by_ID(films_ID);
+//        
+//        for(Film filmDisplay : films){
+//            System.out.println(filmDisplay.toString());
+//        }
+        //whenever i want to call a method that in the class it has the connector as property, i have to do as below
+        FilmsDisplay films_retriever = new FilmsDisplay(connector, "visionvibe");
+        films_retriever.printAllFilms();
+        // Part 1
+        System.out.println("Start");
+        DataInputFactory dataInputFactory = new DataInputFactory();
+        DataIOMenu ioMenu = new DataIOMenu();
+        DataIOTypes type = ioMenu.makeMenu("Where do you want to get the data from?");
+        DataInput input = dataInputFactory.makeDataInput(type);
+        List<String> lines = input.getData();
 
-    // Part 1
-    System.out.println("Start");
-    DataInputFactory dataInputFactory = new DataInputFactory();
-    DataIOMenu ioMenu = new DataIOMenu();
-    DataIOTypes type = ioMenu.makeMenu("Where do you want to get the data from?");
-    DataInput input = dataInputFactory.makeDataInput(type);
-    List<String> lines = input.getData();
-   
-    // Part 3
-    MovieParser movieParser = new MovieParser(lines);
-   
-    // Validates before parsing
-    List<MovieClass> movies = movieParser.parseInputData();
+        // Part 3
+        MovieParser movieParser = new MovieParser(lines);
+
+        // Validates before parsing
+        List<MovieClass> movies = movieParser.parseInputData();
         
-    // Part 4
-    // Part 5
-    DataOutputFactory dataOutputFactory = new DataOutputFactory();
+        // Part 4
+        // Part 5
+        DataOutputFactory dataOutputFactory = new DataOutputFactory();
 
-    // Pass the connector to the DataOutputFactory
-    dataOutputFactory.setConnector(connector); // You need to create this method in DataOutputFactory
-    
-    type = ioMenu.makeMenu("Where do you want to save the data to?");
-    
-    DataOutput output = dataOutputFactory.makeDataOutput(type);
-    output.saveData(movies);
+        // Pass the connector to the DataOutputFactory
+        dataOutputFactory.setConnector(connector); // You need to create this method in DataOutputFactory
 
-        
-  
+        type = ioMenu.makeMenu("Where do you want to save the data to?");
+    
+        DataOutput output = dataOutputFactory.makeDataOutput(type);
+        output.saveData(movies);
+
         MenuOptions myOptions = new MenuOptions();   
         User myUser = new User(null, null, null);
         Controller myController = new Controller( myUser, myOptions);
-        
-
-        UsersManager insertUser = new UsersManager();
-        insertUser.save_user_info(2, "Bernardo", "rol", "no matter it is all the same");
-        insertUser.save_user_info(3, "Ignacio", "dan", "no matter it is all the same");
-        insertUser.save_user_info(4, "Rata", "ga", "no matter it is all the same");
-        insertUser.save_user_info(5, "Wellington", "wow", "no matter it is all the same");
-        
-        //Method to display all films that has been extracted from db and are in a list
-        FilmsDisplay films_display = new FilmsDisplay();
-        films_display.display_list_films();
        
-        //Method to display all users that has been extracted from db and are in a list
-        UserDisplay user_display = new UserDisplay();
-        user_display.display_list_users();
-        
-        //Adding info to databases
-        RentalManager rental_display = new RentalManager();
-        rental_display.save_rental_info(1, 1, 5);
-        rental_display.save_rental_info(2, 3, 5);
-        rental_display.save_rental_info(3, 3, 5);
-        rental_display.save_rental_info(4, 3, 5);
-        rental_display.save_rental_info(5, 3, 2);
-        rental_display.save_rental_info(6, 1, 2);
-        rental_display.save_rental_info(7, 1, 2);
-        
-        //Displaying info from rental db
-        RentalDisplay rental_info = new RentalDisplay();
-        rental_info.display_list_rental();
-        
-        
-
         //Switch Menu for terminal
         Scanner scanner = new Scanner(System.in);
-    
+        
+        MenuClass menu_classes = new MenuClass();
+        
         boolean isLoggedIn = false;
             while (true) {
                 if (!isLoggedIn) {
-                    showMainMenu();
+                    menu_classes.showMainMenu();
                 } else {
-                    showUserMenu();
+                    menu_classes.showUserMenu();
                 }
             }
             

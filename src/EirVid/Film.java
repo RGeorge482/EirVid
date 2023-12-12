@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package EirVid;
-
-import java.util.List;
-
 /**
  *
  * @author Wellington 2021330

@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package EirVid;
-
 /**
  *
  * @author Wellington 2021330
  * Class holding all the film properties and corresponding mutators
  */
+
 public class Film {
     private int movie_id;
     private String original_language;

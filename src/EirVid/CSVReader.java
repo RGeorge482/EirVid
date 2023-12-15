@@ -21,12 +21,10 @@ public class CSVReader implements DataInput {
     @Override
     
     public List<String> getData() throws IOException {
-        myReader = new BufferedReader(new FileReader("movie.csv"));
+        myReader = new BufferedReader(new FileReader("movie1.csv"));
         
         String inputLine = myReader.readLine();
-        
-        
-        
+              
         while ((inputLine = myReader.readLine()) != null) {
             System.out.println("Inputline: " + inputLine);
             lines.add(inputLine);

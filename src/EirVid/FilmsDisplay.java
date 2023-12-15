@@ -10,14 +10,10 @@ public class FilmsDisplay {
     private DatabaseConnector connector;
     private String databaseName;
 
-    public FilmsDisplay(DatabaseConnector connector, String databaseName) {
+    public FilmsDisplay( String databaseName, DatabaseConnector connector) {
         this.connector = connector;
         this.databaseName = databaseName;
     }
-
-    public FilmsDisplay() {
-    }
-    
     
     public void printAllFilms() {
         try (Connection conn = connector.getConnection();

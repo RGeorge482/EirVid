@@ -4,6 +4,7 @@
  */
 package EirVid;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 //import  EirVid.RentaMovie.rentAMovie;
 
@@ -13,53 +14,28 @@ import java.util.Scanner;
  */
 public class MenuClass {
     public static Scanner scanner = new Scanner(System.in);
-    public static boolean isLoggedIn = false;
+    public static boolean isLoggedIn = false;    
     private RentaMovie rent_movie = new RentaMovie();
-    private DatabaseConnector connector;
-    private String databaseName;
-    private RentalInfoRetriever rentalInfoRetrival = new RentalInfoRetriever(connector, databaseName);
-
-  public  void showMainMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
-        System.out.println("1. Create Account\n2. Login\n3. Exit");
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-        
-        switch (choice) {
-            case 1:
-                // Create account logic
-                break;
-            case 2:
-                // Login logic
-                showUserMenu();
-                isLoggedIn = true; // Set to true on successful login
-                break;
-            case 3:
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
-        }
-    }
-
-    public void showUserMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
-        System.out.println("1. Rent a Movie\n2. Print Previous Watch\n3. Print Recommendations\n4. Logout");
-        System.out.print("Enter your choice: ");
+    RentalDisplay my_rentals = new RentalDisplay();
+    RecommendedFilms recommended_films = new RecommendedFilms();
+    
+    public void showUserMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException, SQLException{
         int choice = scanner.nextInt();
 
         switch (choice) {
+            
             case 1:
-                // Rent a movie logic rentAMovie();
-                rent_movie.rentAMovie();
-                
-                break;
-           
+                rent_movie.rentAMovie();   
+                break; 
                     
-            case 2:
-                // Print previous watch logic
-                rentalInfoRetrival.import_rental(choice); // as a parameter we will need the user id
+            case 2: //
+                System.out.println("Movies History");
+                System.out.println("--------------------------");
+                my_rentals.get_movies_by_userID(1);
                 break;
             case 3:
-                // Print recommendations logic
+                MovieClass[] array_films = recommended_films.getFilmsWatchedLast5Minutes();
+                recommended_films.display_recommendation(array_films);
                 break;
             case 4:
                 isLoggedIn = false; // Log out

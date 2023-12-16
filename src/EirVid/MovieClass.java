@@ -26,6 +26,9 @@ public class MovieClass {
         this.price = price;
     }
     
+    public MovieClass(){
+    };
+    
      // Getters
     public String getOriginalLanguage() {
         return original_language;
@@ -50,11 +53,34 @@ public class MovieClass {
     public double getPrice() {
         return price;
     }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
+    public void setVote_average(double vote_average) {
+        this.vote_average = vote_average;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    
+    @Override
+    public String toString() {
+        return "MovieClass{" + "original_language=" + original_language + ", title=" + title + ", popularity=" + popularity + ", vote_average=" + vote_average + ", vote_count=" + vote_count + ", price=" + price + '}';
+    }
 }
-    
-    
-    
-    
-    
-    
- 

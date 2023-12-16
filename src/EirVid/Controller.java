@@ -79,10 +79,18 @@ public class Controller {
 
                             if (userExists) {
                                 //if user exists maybe is a good idea to return an array list with all the info from this specific user
+                                
                                 options.user_menu_options();
+                                
+                                // MENU THAT CONNECTS FOR METHOD 1 Of renting
+                                MenuClass menu_classes = new MenuClass();
+                                menu_classes.showUserMenu();
+                               
                                 int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
+                                
                                 System.out.println("");
-                                // switch with options to rent, check rented movies, top 5 most recmmended movies, modify profile
+                                
+                                  // switch with options to rent, check rented movies, top 5 most recmmended movies, modify profile
 
                                 break;
                             } else {

@@ -4,40 +4,41 @@
  */
 package EirVid;
 
-//import static EirVid.MenuClass.scanner;
-
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
-
-
 /**
  *
  * @author ignacioalarconvarela
  */
+
 public class RentaMovie {
-    private static final AtomicInteger count = new AtomicInteger(0); 
     private DatabaseConnector connector;
-    private String databaseName;
-    FilmsDisplay film_display = new FilmsDisplay();
-    FilmsDisplay film_display_connector = new FilmsDisplay(connector, "visionvibe");
-    RentalManager rental_manager = new RentalManager();
+
+    public RentaMovie() {
+        this.connector = new DatabaseConnector();
+    }  
+    //FilmsDisplay film_display_connector = new FilmsDisplay(connector, "visionvibe");
+     RentalManager rental_manager = new RentalManager();
    
+  
     public void rentAMovie() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
         Scanner mySc = new Scanner(System.in);
-        //Show list of movies WHY IS IT NOT WORKING?
-        film_display.printAllFilms();
+        
+        MovieDisplay film_display = new MovieDisplay();
+        film_display.printAllFilms(); //PRINT ALL FILMS
+
+        
         System.out.print("Select a movie: ");
         int movieChoice = mySc.nextInt();
+        
         // Logic to handle movie selection based on 'movieChoice'
-
-    System.out.print("You selected [Movie Name]. Confirm? (Y/N): ");
-    String confirmation = mySc.next();
+        System.out.print("Confirm? (Y/N): ");
+        String confirmation = mySc.next();
 
     if (confirmation.equalsIgnoreCase("Y")) {
-        // Output movie details and cost
-        // Example: System.out.println("[Movie Name] - Price: $xx.xx");
-        //We have to find out how to ge this user id
-        rental_manager.save_rental_info(count.incrementAndGet(), movieChoice, 1);
+        System.out.print("Film rented: ");
+        film_display.price_name_output(movieChoice);// DISPLAY RENTED FILM INFO
+        rental_manager.save_rental_info(movieChoice, 1); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
+        
     } else {
         // Return to menu
         return;

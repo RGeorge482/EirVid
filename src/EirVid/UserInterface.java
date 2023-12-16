@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author George
+ * @author Gheorghita Rata
  * mda21563
  */
 public interface UserInterface {

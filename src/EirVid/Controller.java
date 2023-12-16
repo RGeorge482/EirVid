@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author George
+ * @author Gheorghita Rata
  * mda21563
  */
 public class Controller {

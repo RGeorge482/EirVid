@@ -7,16 +7,15 @@ package EirVid;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author bernardogandara 2021283
  */
 public class DatabaseConnector {
-    private static final String URL = "jdbc:mysql://localhost:3306/"; //MySQL URL and port
-    private static final String USER = "root"; //MySQL username
-    private static final String PASSWORD = "root"; //MySQL password
+    protected static final String URL = "jdbc:mysql://localhost:3306/"; //MySQL URL and port
+    protected static final String USER = "root"; //MySQL username
+    protected static final String PASSWORD = "root"; //MySQL password
     
     //CONNECT TO THE DATABASE method()
     public Connection getConnection() throws SQLException{

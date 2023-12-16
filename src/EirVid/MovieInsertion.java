@@ -15,7 +15,7 @@ import java.sql.Statement;
  * @author Wellington
  * This class can be later deleted it is just to test
  */
-public class FilmsInsertion {
+public class MovieInsertion {
    // String dbName = "movies";
     String DB_URL = "jdbc:mysql://localhost/";
     String USER = "root";

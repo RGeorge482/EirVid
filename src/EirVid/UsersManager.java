@@ -9,22 +9,20 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import static EirVid.DatabaseConnector.URL;
+import static EirVid.DatabaseConnector.USER;
+import static EirVid.DatabaseConnector.PASSWORD;
 /**
  *
  * @author Wellington
  * This class can be later deleted it is just to test
  */
 public class UsersManager {
-   // String dbName = "movies";
-    String DB_URL = "jdbc:mysql://localhost/";
-    String USER = "root";
-    String PASSWORD = "root";
-    
+   
        public boolean save_user_info(int user_ID, String username, String email, String password) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
         try {
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
             Statement stmt = conn.createStatement();//Creating the queries `statements`
             stmt.execute("USE visionvibe;");
             stmt.execute(

@@ -4,16 +4,12 @@
  */
 package EirVid;
 
-//import static EirVid.MenuClass.scanner;
-
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
-
-
 /**
  *
  * @author ignacioalarconvarela
  */
+
 public class RentaMovie {
     private DatabaseConnector connector;
 
@@ -27,24 +23,21 @@ public class RentaMovie {
     public void rentAMovie() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
         Scanner mySc = new Scanner(System.in);
         
-        FilmsDisplay film_display = new FilmsDisplay("visionvibe", this.connector);
-        film_display.printAllFilms();
+        MovieDisplay film_display = new MovieDisplay();
+        film_display.printAllFilms(); //PRINT ALL FILMS
 
         
         System.out.print("Select a movie: ");
         int movieChoice = mySc.nextInt();
         
-    // Logic to handle movie selection based on 'movieChoice'
-
-        System.out.print("You selected [Movie Name]. Confirm? (Y/N): ");
+        // Logic to handle movie selection based on 'movieChoice'
+        System.out.print("Confirm? (Y/N): ");
         String confirmation = mySc.next();
 
     if (confirmation.equalsIgnoreCase("Y")) {
-        // Output movie details and cost
-        // Example: System.out.println("[Movie Name] - Price: $xx.xx");
-        //We have to find out how to ge this user id
-       
-// rental_manager.save_rental_info( 1, movieChoice, 1);
+        System.out.print("Film rented: ");
+        film_display.price_name_output(movieChoice);// DISPLAY RENTED FILM INFO
+        rental_manager.save_rental_info(movieChoice, 1); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
         
     } else {
         // Return to menu

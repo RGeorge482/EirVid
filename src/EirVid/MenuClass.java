@@ -4,6 +4,7 @@
  */
 package EirVid;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 //import  EirVid.RentaMovie.rentAMovie;
 
@@ -15,35 +16,26 @@ public class MenuClass {
     public static Scanner scanner = new Scanner(System.in);
     public static boolean isLoggedIn = false;    
     private RentaMovie rent_movie = new RentaMovie();
-    private DatabaseConnector connector;
-    private String databaseName;
+    RentalDisplay my_rentals = new RentalDisplay();
+    RecommendedFilms recommended_films = new RecommendedFilms();
     
-    private RentalInfoRetriever rentalInfoRetrival = new RentalInfoRetriever(connector, databaseName);
-
-    public void showUserMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
+    public void showUserMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException, SQLException{
         int choice = scanner.nextInt();
 
         switch (choice) {
-         
-            // MENU TO IMPLEMENT METHOD OF RENTING !
             
             case 1:
-                // LIST OF MOVIES;
                 rent_movie.rentAMovie();   
-                
-                // SELECT A MOVIE
-                
                 break; 
                     
             case 2: //
-                
-                // Print previous watch logic
-                //rentalInfoRetrival.import_rental(choice); // as a parameter we will need the user id
-               
+                System.out.println("Movies History");
+                System.out.println("--------------------------");
+                my_rentals.get_movies_by_userID(1);
                 break;
             case 3:
-                // Print recommendations logic
-                
+                MovieClass[] array_films = recommended_films.getFilmsWatchedLast5Minutes();
+                recommended_films.display_recommendation(array_films);
                 break;
             case 4:
                 isLoggedIn = false; // Log out

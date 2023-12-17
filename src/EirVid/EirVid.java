@@ -44,12 +44,10 @@ public class EirVid {
         output.saveData(movies);
 
         
-        //from h
-        MenuOptions myOptions = new MenuOptions();  
-        
-        User myUser = new User(null, null, null);
-        
-        Controller myController = new Controller(myUser, myOptions);
+        //Part 6 application logic
+        // Controller is instantiated
+        Controller myController = new Controller();
+        myController.start();
        
     }
 }

@@ -11,9 +11,10 @@ import java.util.regex.Pattern;
 
 
 /**
- * @author George
+ * @author Gheorghita Rata
  * mda21563
  */
+// this class is responsible for validating user input
 public class Utilities {
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
@@ -24,12 +25,13 @@ public class Utilities {
         pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
     }
 
+      // method responsible for validating if email are in  the correct format
     public boolean email_validator(String email_address) {
         matcher = pattern.matcher(email_address);
         return matcher.matches();
     }
 
-
+    // user input validator
     public String get_user_valid_input(String prompt) {
         Scanner myScanner = new Scanner(System.in);
 
@@ -45,6 +47,7 @@ public class Utilities {
         return input;
     }
 
+    // user input validator
     public String get_user_input(String prompt) {
         Scanner myScanner = new Scanner(System.in);
         String input = "";
@@ -58,6 +61,7 @@ public class Utilities {
         return input;
     }
 
+    // user input validator
     public int Get_user_int(String prompt, int minValue, int maxValue) {
         Scanner myScanner = new Scanner(System.in);
         int input = -1;

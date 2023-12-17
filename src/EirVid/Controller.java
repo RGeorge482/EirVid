@@ -5,101 +5,239 @@
  */
 package EirVid;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
+
 
 /**
  *
- * @author George
+ * @author Gheorghita Rata
  * mda21563
  */
+// this class is responsible for all the logic of the application
 public class Controller {
     private User user;
     private MenuOptions options;
+    private DatabaseConnector connector;
+    private Utilities myUt;
 
-    public Controller(User user, MenuOptions options) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-        this.user = user;
-        this.options = options;
+    // constructor implemented
+    public Controller() throws SQLException {
+        this.options = new MenuOptions();
+        this.connector = new DatabaseConnector();
+        this.myUt = new Utilities();
+    }
 
+    // method to start the application
+    public void start() {
         Scanner mySc = new Scanner(System.in);
-
-        ArrayList<UserInterface> users = new ArrayList<>(); // CREATING A NEW ARRAY LIST TO RECEIVE REGISTERED USERS
-
-        Utilities myUt = new Utilities();
-
-        boolean valid = false;
-        String programHault = "";
-        int userMenuChoice = -1, userSignLogin;
+        boolean valid;
+        int userSignLogin; // variable used to store the user input
+        String programHault; // variable used to store the user input
 
         do {
-            options.user_status();//USER login or register
-            System.out.println("");
-                    options.user_status();
-                    userSignLogin = myUt.Get_user_int("Please type one of the options above: ", 1, 2);
-                    System.out.println("");
-                    switch (userSignLogin) {
-                        case 1://USER SELECTS REGISTER
-                            String emailAddress="";
-                            valid = false;
-                            String username = myUt.get_user_input("Please, type your username: ");
-                            System.out.println("");
+            options.user_status(); // User login or register
+            userSignLogin = myUt.Get_user_int("Please type one of the options above: ", 1, 2);
 
-                            do{
-                                System.out.println("Please, type your email address");
-                                emailAddress = mySc.next();
-                                if(myUt.email_validator(emailAddress)) valid = true;
-                                else System.out.println("Try an email containing '@' and a domain such as 'gmail.com'");
-                                System.out.println("");
-                            }while(!valid);//loop breaks if user email address is valid
+            switch (userSignLogin) {
+                case 1: // this is the case when user register
+                    handleRegistration(mySc);
+                    break;
 
-                            System.out.println("");
-                            System.out.print("Please type a password: ");
-                            String userPassword = mySc.next();
-                            
-                            // Check User class constructor
+                case 2: // this is the case when user login
+                    handleLogin(mySc);
+                    break;
 
-                             user = new User(username, emailAddress, userPassword);
+                default:
+                    System.out.println("Invalid option. Please try again.");
+                    break;
+            }
 
-                            //users.add(user); // Check here UserRetrival class  User user = new User();
-
-                            user.register(user);//user registered
-
-                            System.out.println("User registered successfully!");
-                            break;
-
-                        case 2://USER SELECTS LOGIN
-                            String user_name_login = myUt.get_user_input("Please type your username: ");
-                            System.out.print("Please, type your password: ");
-                            String user_password_login = mySc.nextLine();
-
-                            // this step only after userExists now here only for testing
-                            options.user_menu_options();
-
-                            boolean userExists = (user.user_login(user_name_login, user_password_login)); //method returns true if user exists and pass is correct
-
-                            if (userExists) {
-                                //if user exists maybe is a good idea to return an array list with all the info from this specific user
-                                
-                                options.user_menu_options();
-                                
-                                // MENU THAT CONNECTS FOR METHOD 1 Of renting
-                                MenuClass menu_classes = new MenuClass();
-                                menu_classes.showUserMenu();
-                               
-                                int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
-                                
-                                System.out.println("");
-                                
-                                  // switch with options to rent, check rented movies, top 5 most recmmended movies, modify profile
-
-                                break;
-                            } else {
-                                System.out.println("Your details seems to be incorrect, please try again!");
-                            }
-                            break;
-                    }
-            System.out.println("");
             programHault = myUt.get_user_valid_input("Would you like to return to the main menu? [y] or [n]");
-        } while (programHault.equals("y"));//LOOP FOR THE USER TO RETURN TO MAIN HEADER
+        } while (programHault.equalsIgnoreCase("y"));
+    }
+
+    // method responsible with registration
+    private void handleRegistration(Scanner mySc) {
+        String username = myUt.get_user_input("Please, type your username: ");
+        String emailAddress = getUserEmail(mySc);
+        String userPassword = getUserPassword(mySc);
+
+        User newUser = new User(username, emailAddress, userPassword); // here I am creating a new user object
+        RegisterHandler registerHandler = new RegisterHandler(connector, "y3cagroup"); // using the DatabaseConnector class I am registering a new user object
+
+        if (registerHandler.register(newUser)) { // user is registered successfully
+            System.out.println("User registered successfully!");
+        } else {
+            System.out.println("Registration failed.");
+        }
+    }
+
+    // method responsible for login
+    private void handleLogin(Scanner mySc) {
+        String user_name_login = myUt.get_user_input("Please type your username: ");
+        String user_password_login = getPasswordFromUser(mySc, "Please, type your password: ");
+
+        LoginHandler loginHandler = new LoginHandler(connector, "y3cagroup"); // using the DatabaseConnector class and in LoginHandler
+
+        if (loginHandler.user_login(user_name_login, user_password_login)) { // user is login successfully
+            handleLoggedInUser(mySc);
+        } else {
+            System.out.println("Your details seem to be incorrect, please try again!");
+        }
+    }
+
+    // this method handles the options for rent a movie, checking rented movie, top 5 recommended movie, and user update option
+    private void handleLoggedInUser(Scanner mySc) {
+        options.user_menu_options();
+        int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
+
+        switch (loggedUserChoice) {
+            case 1:
+
+                // MENU THAT CONNECTS FOR METHOD 1 Of renting
+                try{
+                    MenuClass menu_classes = new MenuClass();
+                    menu_classes.showUserMenu();
+                } catch (Exception e) {
+                   System.out.println(e); 
+                }
+               
+                break;
+            case 2:
+                // checking rented movies
+                break;
+            case 3:
+                // top 5 most recommended movies
+                break;
+            case 4:
+                // change info
+                handleUserUpdate(mySc);
+                break;
+            default:
+                System.out.println("Option not available. Try again.");
+                break;
+        }
+    }
+
+    // in this method is implemented the logic for updating username, email or password
+    private void handleUserUpdate(Scanner mySc) {
+        // Logic to handle user updates
+        options.update_user_info();
+        int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
+
+        switch (loggedUserChoice) {
+            case 1:
+                // Update Username
+                updateUsername(mySc);
+                break;
+            case 2:
+                // Update Email
+                updateEmail(mySc);
+                break;
+            case 3:
+                // Update Password
+                updatePassword(mySc);
+                break;
+            case 4:
+                // Back to the Main Menu
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
+        }
+
+    }
+
+    private void updateUsername(Scanner mySc) {
+        // I implement logic to update username
+        System.out.print("Please enter your current username: ");
+        String currentUsername = mySc.nextLine();
+
+        System.out.print("Please enter your new username: ");
+        String newUsername = mySc.nextLine();
+
+        // I create an instance of DatabaseConnector
+        DatabaseConnector connector = new DatabaseConnector();
+
+        // I create an instance of UpdateUserInfo and pass the DatabaseConnector to it
+        UpdateUserInfo userInfoUpdater = new UpdateUserInfo(connector);
+
+        System.out.print("Please enter your email address: ");
+        String userEmail = mySc.nextLine();
+
+        // Here the username is updated in the database
+        String result = userInfoUpdater.update_userinfo("username", currentUsername, userEmail, currentUsername, newUsername);
+        System.out.println(result);
+    }
+
+    // Method responsible for update email
+    private void updateEmail(Scanner mySc) {
+        // update email
+        System.out.print("Please enter your username: ");
+        String username = mySc.nextLine();
+
+        System.out.print("Please enter your current email address: ");
+        String currentEmail = mySc.nextLine();
+
+        // ask user for the new email address
+        System.out.print("Please enter your new email address: ");
+        String newEmail = mySc.nextLine();
+
+        DatabaseConnector connector = new DatabaseConnector();
+
+        UpdateUserInfo userInfoUpdater = new UpdateUserInfo(connector);
+
+        // email is updated in the database
+        String result = userInfoUpdater.update_userinfo("email", username, currentEmail, currentEmail, newEmail);
+        System.out.println(result);
+    }
+
+    // update password method, user to be able to update the password needs to provide the username, email and current password
+    private void updatePassword(Scanner mySc) {
+        System.out.print("Please enter your username: ");
+        String username = mySc.nextLine();
+
+        System.out.print("Please enter your email address: ");
+        String email = mySc.nextLine();
+
+        System.out.print("Please enter your current password: ");
+        String currentPassword = mySc.nextLine();
+
+        System.out.print("Please enter your new password: ");
+        String newPassword = mySc.nextLine();
+
+        DatabaseConnector connector = new DatabaseConnector();
+
+        UpdateUserInfo userInfoUpdater = new UpdateUserInfo(connector);
+
+        // password is updated in the database
+        String result = userInfoUpdater.update_userinfo("password", username, email, currentPassword, newPassword);
+        System.out.println(result);
+    }
+
+    // email validation
+    private String getUserEmail(Scanner mySc) {
+        String emailAddress;
+        do {
+            System.out.println("Please, type your email address");
+            emailAddress = mySc.next();
+            if (myUt.email_validator(emailAddress)) {
+                break;
+            } else {
+                System.out.println("Invalid email. Please try again.");
+            }
+        } while (true);
+        return emailAddress;
+    }
+
+    // ask for user password
+    private String getUserPassword(Scanner mySc) {
+        System.out.print("Please type a password: ");
+        return mySc.next();
+    }
+
+    private String getPasswordFromUser(Scanner mySc, String prompt) {
+        System.out.print(prompt);
+        return mySc.nextLine();
     }
 }

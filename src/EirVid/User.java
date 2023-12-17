@@ -65,16 +65,4 @@ public class User {
         return "User{" + "user_name=" + user_name + ", email=" + email + ", password=" + password + ", user_ID=" + user_ID + '}';
     }
     
-    
-    //  Register 
-    public boolean register(User user) {
-        // connect to the database to register
-        return true;
-    }
-    
-    // Login
-     public boolean user_login(String name, String user_password) {
-        // connect to database to login
-        return true;
-    }
 }

@@ -95,8 +95,13 @@ public class Controller {
             case 1:
 
                 // MENU THAT CONNECTS FOR METHOD 1 Of renting
-               // MenuClass menu_classes = new MenuClass();
-               // menu_classes.showUserMenu();
+                try{
+                    MenuClass menu_classes = new MenuClass();
+                    menu_classes.showUserMenu();
+                } catch (Exception e) {
+                   System.out.println(e); 
+                }
+               
                 break;
             case 2:
                 // checking rented movies

@@ -81,6 +81,6 @@ public class MovieClass {
     
     @Override
     public String toString() {
-        return "MovieClass{" + "original_language=" + original_language + ", title=" + title + ", popularity=" + popularity + ", vote_average=" + vote_average + ", vote_count=" + vote_count + ", price=" + price + '}';
+        return "Movies: {" + "original_language=" + original_language + ", title=" + title + ", popularity=" + popularity + ", vote_average=" + vote_average + ", vote_count=" + vote_count + ", price=" + price + '}';
     }
 }

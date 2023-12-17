@@ -18,6 +18,7 @@ import static EirVid.DatabaseConnector.PASSWORD;
  */
 
 public class RentalManager {
+    
     public RentalManager() {
     }
        

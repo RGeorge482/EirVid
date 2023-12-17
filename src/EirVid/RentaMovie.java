@@ -12,21 +12,18 @@ import java.util.Scanner;
 
 public class RentaMovie {
     private DatabaseConnector connector;
-
+    protected MovieDisplay film_display;
+    protected RentalManager rental_manager;
+    
     public RentaMovie() {
         this.connector = new DatabaseConnector();
     }  
-    //FilmsDisplay film_display_connector = new FilmsDisplay(connector, "visionvibe");
-     RentalManager rental_manager = new RentalManager();
-   
-  
+    
     public void rentAMovie() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
         Scanner mySc = new Scanner(System.in);
         
-        MovieDisplay film_display = new MovieDisplay();
-        film_display.printAllFilms(); //PRINT ALL FILMS
+        film_display.printAllFilms();
 
-        
         System.out.print("Select a movie: ");
         int movieChoice = mySc.nextInt();
         
@@ -36,7 +33,7 @@ public class RentaMovie {
 
     if (confirmation.equalsIgnoreCase("Y")) {
         System.out.print("Film rented: ");
-        film_display.price_name_output(movieChoice);// DISPLAY RENTED FILM INFO
+        //film_display.price_name_output(movieChoice);// DISPLAY RENTED FILM INFO
         rental_manager.save_rental_info(movieChoice, 1); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
         
     } else {

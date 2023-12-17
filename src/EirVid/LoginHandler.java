@@ -43,7 +43,5 @@ public class LoginHandler {
             e.printStackTrace();
         }
         return false;
-    }  
-
-    
+    } 
 }

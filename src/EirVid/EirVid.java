@@ -53,6 +53,11 @@ public class EirVid {
         // Controller is instantiated
         Controller myController = new Controller();
         myController.start();
+        
+        MenuOptions myOptions = new MenuOptions();  
+        
+        User myUser = new User(null, null, null);
+ 
        
     }
 }

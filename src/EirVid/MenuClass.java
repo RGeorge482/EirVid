@@ -15,25 +15,28 @@ import java.util.Scanner;
 public class MenuClass {
     public static Scanner scanner = new Scanner(System.in);
     public static boolean isLoggedIn = false;    
-    private RentaMovie rent_movie = new RentaMovie();
-    RentalDisplay my_rentals = new RentalDisplay();
-    RecommendedFilms recommended_films = new RecommendedFilms();
-    
+    protected RentaMovie rent_movie;
+    protected RentalDisplay my_rentals;
+    protected RecommendedFilms recommended_films;
+     
     public void showUserMenu() throws IllegalAccessException, InstantiationException, ClassNotFoundException, SQLException{
         int choice = scanner.nextInt();
-
+        scanner.nextLine();
+        
         switch (choice) {
-            
             case 1:
                 rent_movie.rentAMovie();   
                 break; 
                     
             case 2: //
+//                String username = myUt.get_user_input("Please, type your username: ");
+//                userId.user_validation(username);
                 System.out.println("Movies History");
                 System.out.println("--------------------------");
                 my_rentals.get_movies_by_userID(1);
                 break;
             case 3:
+                System.out.println("TEST");
                 MovieClass[] array_films = recommended_films.getFilmsWatchedLast5Minutes();
                 recommended_films.display_recommendation(array_films);
                 break;

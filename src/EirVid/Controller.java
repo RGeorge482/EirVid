@@ -19,16 +19,24 @@ public class Controller {
     private MenuOptions options;
     private DatabaseConnector connector;
     private Utilities myUt;
-
+    private RentalManager rental_manager;
+    private MovieDisplay film_display;
+    protected RentalDisplay my_rentals;
+    protected RecommendedFilms recommended_films;
+    
     // constructor implemented
-    public Controller() throws SQLException {
-        this.options = new MenuOptions();
-        this.connector = new DatabaseConnector();
-        this.myUt = new Utilities();
-    }
+public Controller() throws SQLException {
+    this.options = new MenuOptions();
+    this.connector = new DatabaseConnector();
+    this.myUt = new Utilities();
+    this.film_display = new MovieDisplay(); 
+    this.my_rentals = new RentalDisplay();
+    this.rental_manager = new RentalManager();
+    this.recommended_films = new RecommendedFilms();
+}
 
     // method to start the application
-    public void start() {
+    public void start() throws IllegalAccessException, InstantiationException, ClassNotFoundException{
         Scanner mySc = new Scanner(System.in);
         boolean valid;
         int userSignLogin; // variable used to store the user input
@@ -63,8 +71,8 @@ public class Controller {
         String userPassword = getUserPassword(mySc);
 
         User newUser = new User(username, emailAddress, userPassword); // here I am creating a new user object
-        RegisterHandler registerHandler = new RegisterHandler(connector, "y3cagroup"); // using the DatabaseConnector class I am registering a new user object
-
+        RegisterHandler registerHandler = new RegisterHandler(connector, "visionvibe"); // using the DatabaseConnector class I am registering a new user object
+        //y3cagroup
         if (registerHandler.register(newUser)) { // user is registered successfully
             System.out.println("User registered successfully!");
         } else {
@@ -73,11 +81,11 @@ public class Controller {
     }
 
     // method responsible for login
-    private void handleLogin(Scanner mySc) {
+    private void handleLogin(Scanner mySc) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         String user_name_login = myUt.get_user_input("Please type your username: ");
         String user_password_login = getPasswordFromUser(mySc, "Please, type your password: ");
 
-        LoginHandler loginHandler = new LoginHandler(connector, "y3cagroup"); // using the DatabaseConnector class and in LoginHandler
+        LoginHandler loginHandler = new LoginHandler(connector, "visionvibe"); // using the DatabaseConnector class and in LoginHandler
 
         if (loginHandler.user_login(user_name_login, user_password_login)) { // user is login successfully
             handleLoggedInUser(mySc);
@@ -87,27 +95,43 @@ public class Controller {
     }
 
     // this method handles the options for rent a movie, checking rented movie, top 5 recommended movie, and user update option
-    private void handleLoggedInUser(Scanner mySc) {
+    private void handleLoggedInUser(Scanner mySc) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         options.user_menu_options();
         int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
 
         switch (loggedUserChoice) {
             case 1:
-
-                // MENU THAT CONNECTS FOR METHOD 1 Of renting
-                try{
-                    MenuClass menu_classes = new MenuClass();
-                    menu_classes.showUserMenu();
-                } catch (Exception e) {
-                   System.out.println(e); 
+                
+                film_display.printAllFilms();
+         
+                System.out.print("Select a movie: ");
+                
+                int movieChoice = mySc.nextInt();
+                
+                System.out.print("Confirm? (Y/N): ");
+                
+                String confirmation = mySc.next();
+                
+                if (confirmation.equalsIgnoreCase("Y")) {
+                
+                System.out.print("Film rented: ");
+                
+                film_display.price_name_output(movieChoice);
+                rental_manager.save_rental_info(movieChoice, 1); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
+        
+                } else {
+                // Return to menu
+                return;
                 }
-               
                 break;
             case 2:
-                // checking rented movies
+                System.out.println("Movies History");
+                System.out.println("--------------------------");
+                my_rentals.get_movies_by_userID(1);
                 break;
             case 3:
-                // top 5 most recommended movies
+                MovieClass[] array_films = recommended_films.getFilmsWatchedLast5Minutes();
+                recommended_films.display_recommendation(array_films);
                 break;
             case 4:
                 // change info

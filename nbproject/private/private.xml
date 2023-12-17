@@ -3,12 +3,45 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MenuClass.java</file>
-=======
-            <file>file:/C:/Users/35386/OneDrive/Desktop/BcCCt/Y3/Sem1/AlgorithmsArch&amp;DesignPatterns/javaCode/EirVid/src/EirVid/Controller.java</file>
-            <file>file:/C:/Users/35386/OneDrive/Desktop/BcCCt/Y3/Sem1/AlgorithmsArch&amp;DesignPatterns/javaCode/EirVid/src/EirVid/EirVid.java</file>
->>>>>>> fa9f110e7b5d7c61c5e7b6c5a2d52f0bc386e897
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MenuOptions.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RentalDisplay.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MovieClass.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MovieDisplay.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/Rental.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserHandler.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/Controller.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataInputFactory.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserCreator.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/LoginHandler.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserDisplay.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/README.md</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataIOTypes.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UpdateUserInfo.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RentaMovie.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DatabaseInitializer.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MovieInsertion.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/EirVid.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RentalManager.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataInput.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RegisterHandler.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataOutputFactory.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserTableCreator.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RentalTableCreator.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataBaseOutput.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/Utilities.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UsersManager.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/CSVReader.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/User.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserInterface.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataIOMenu.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DataOutput.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/SchemaCreator.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MovieTableCreator.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RecommendedFilms.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/MovieParser.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/RentalInfoRetriever.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/DatabaseConnector.java</file>
+            <file>file:/C:/Users/Dell/Documents/NetbeansProjects/EirVid/src/EirVid/UserData.java</file>
         </group>
     </open-files>
 </project-private>

@@ -9,6 +9,7 @@ import static EirVid.DatabaseConnector.URL;
 import static EirVid.DatabaseConnector.USER;
 import static EirVid.DatabaseConnector.PASSWORD;
 
+//Wellington 2021330
 public class MovieDisplay {
     public void printAllFilms() {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);

@@ -1,4 +1,3 @@
-
 package EirVid;
 import static EirVid.DatabaseConnector.URL;
 import static EirVid.DatabaseConnector.USER;

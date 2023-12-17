@@ -15,7 +15,6 @@ import static EirVid.DatabaseConnector.PASSWORD;
 /**
  *
  * @author Wellington
- * This class can be later deleted it is just to test
  */
 public class UsersManager {
    

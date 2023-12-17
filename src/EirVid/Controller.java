@@ -7,7 +7,6 @@ package EirVid;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-
 /**
  *
  * @author Gheorghita Rata
@@ -93,45 +92,60 @@ public Controller() throws SQLException {
             System.out.println("Your details seem to be incorrect, please try again!");
         }
     }
+    
+    //takes user name and pass it on if statement
+    //if user does not exist returns message
+    
+    private void filmRentalAuthorisation() throws IllegalAccessException, InstantiationException, ClassNotFoundException {              
+        String user_name_login = myUt.get_user_input("Please type your username: ");
+
+        LoginHandler loginHandler = new LoginHandler(connector, "visionvibe"); // using the DatabaseConnector class and in LoginHandler
+        
+        if (loginHandler.user_name(user_name_login)) { //make sure user exists
+            int userId = loginHandler.user_id(user_name_login);//is so userId receiver this user id 
+            
+            film_display.printAllFilms();
+         
+            System.out.print("Select a movie: ");
+                
+            int movieChoice = myUt.Get_user_int("Please select one film: ", 1, 2385);
+                
+            System.out.print("Film rented: ");
+            film_display.price_name_output(movieChoice);
+            System.out.println("");
+            rental_manager.save_rental_info(movieChoice, userId); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
+        
+        } else {
+            System.out.println("Your details seem to be incorrect, please try again!");
+        }
+    }
 
     // this method handles the options for rent a movie, checking rented movie, top 5 recommended movie, and user update option
     private void handleLoggedInUser(Scanner mySc) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        LoginHandler loginHandler = new LoginHandler(connector, "visionvibe");
         options.user_menu_options();
         int loggedUserChoice = myUt.Get_user_int("Please type one of the options above: ", 1, 4);
 
         switch (loggedUserChoice) {
             case 1:
-                
-                film_display.printAllFilms();
-         
-                System.out.print("Select a movie: ");
-                
-                int movieChoice = mySc.nextInt();
-                
-                System.out.print("Confirm? (Y/N): ");
-                
-                String confirmation = mySc.next();
-                
-                if (confirmation.equalsIgnoreCase("Y")) {
-                
-                System.out.print("Film rented: ");
-                
-                film_display.price_name_output(movieChoice);
-                rental_manager.save_rental_info(movieChoice, 1); //IN HERE I NEED TO KEEP TRACK OF THE USER LOGGED IN 
-        
-                } else {
-                // Return to menu
-                return;
-                }
+                filmRentalAuthorisation();
                 break;
             case 2:
-                System.out.println("Movies History");
-                System.out.println("--------------------------");
-                my_rentals.get_movies_by_userID(1);
+                String userName = myUt.get_user_input("Type your name: ");
+                
+                if (loginHandler.user_name(userName)){
+                    System.out.println("Movies History");
+                    System.out.println("--------------------------");
+                    my_rentals.get_movies_by_userID(loginHandler.user_id(userName));
+                    System.out.println("");
+                }else{
+                    System.out.println("User not identified");
+                }
                 break;
             case 3:
                 MovieClass[] array_films = recommended_films.getFilmsWatchedLast5Minutes();
                 recommended_films.display_recommendation(array_films);
+                System.out.println("");
                 break;
             case 4:
                 // change info
@@ -139,6 +153,7 @@ public Controller() throws SQLException {
                 break;
             default:
                 System.out.println("Option not available. Try again.");
+                System.out.println("");
                 break;
         }
     }

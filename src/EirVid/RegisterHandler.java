@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package EirVid;
-import java.io.IOException;
-import java.util.List;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

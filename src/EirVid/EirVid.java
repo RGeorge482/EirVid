@@ -11,6 +11,11 @@ import java.util.List;
  *
  * @author bernardogandara
  */
+
+// github repository link 
+// https://github.com/RGeorge482/EirVid
+
+
 public class EirVid {
 
     public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException {

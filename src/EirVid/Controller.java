@@ -108,7 +108,7 @@ public Controller() throws SQLException {
          
             System.out.print("Select a movie: ");
                 
-            int movieChoice = myUt.Get_user_int("Please select one film: ", 1, 2385);
+            int movieChoice = myUt.Get_user_int("Please select one film: ", 1, 1000000);
                 
             System.out.print("Film rented: ");
             film_display.price_name_output(movieChoice);

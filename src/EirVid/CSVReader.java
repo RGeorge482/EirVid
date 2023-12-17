@@ -21,7 +21,7 @@ public class CSVReader implements DataInput {
     @Override
     
     public List<String> getData() throws IOException {
-        myReader = new BufferedReader(new FileReader("movie1.csv"));
+        myReader = new BufferedReader(new FileReader("movie.csv"));
         
         String inputLine = myReader.readLine();
               
